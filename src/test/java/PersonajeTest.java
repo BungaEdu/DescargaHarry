@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 public class PersonajeTest {
 
-
     Ejercicio5 ej = new Ejercicio5();
 
     @Test
@@ -56,20 +55,31 @@ public class PersonajeTest {
         int expected = 38;
         int actual = ej.personajesNombreConLetra('p').length;
         Assertions.assertEquals(expected, actual);
-
     }
 
     @Test
     public void test6() {
         // TODO Crea una función que reciba un string y devuelva una lista con todos los personajes que tienen ese string
         //  en su nombre y están vivos
-        Personaje[] personajesEsperados = new Personaje ["Neville Longbottom",true,true,false,"Matthew Lewis",true,"http://hp-api.herokuapp.com/images/neville.jpg)"];
-
-        //PRUEBAS
+        Personaje [] personajesEsperados = {
+                new Personaje ("Neville Longbottom",true,true,false,"Matthew Lewis",true,"http://hp-api.herokuapp.com/images/neville.jpg")
+        };
         // TODO comprueba que tu función devuelve el número correcto de elementos
-        int expected = 19; //a mi me sale 21 en el excel
-        int actual = ej.personajesNombreConSubStringYEstanVivos("co").length;
-        Assertions.assertEquals(expected, actual);
+        Personaje [] actual = ej.personajesNombreConSubStringYEstanVivos("nev");
+        Assertions.assertArrayEquals(personajesEsperados, actual);
+    }
+
+    @Test
+    public void test6Extra1() {
+        // TODO Crea una función que reciba un string y devuelva una lista con todos los personajes que tienen ese string
+        //  en su nombre y están vivos
+        // TODO comprueba que tu función devuelve el número correcto de elementos
+        Personaje [] personajesEsperados = {
+                new Personaje ("Lev Zograf",true,false,false,"",true,""),
+                new Personaje ("Alexei Levski",true,false,false,"",true,"")
+        };
+        Personaje [] actual = ej.personajesNombreConSubStringYEstanVivos("lev");
+        Assertions.assertArrayEquals(personajesEsperados, actual);
     }
 
     @Test
@@ -77,9 +87,11 @@ public class PersonajeTest {
         // TODO Crea una función que reciba un string y devuelva una lista con todos los personajes que su actor se llama
         //  exactamente como el string recibido
         // TODO comprueba que tu función devuelve el número correcto de elementos
-        int expected = 4;
-        int actual = ej.personajesNombreConStringExacto("Malfoy").length;
-        Assertions.assertEquals(expected, actual);
+        Personaje [] personajesEsperados = {
+                new Personaje ("Draco Malfoy",true,true,false,"Tom Felton",true,"http://hp-api.herokuapp.com/images/draco.jpg"),
+        };
+        Personaje actual []= ej.personajesNombreConStringExacto("Draco Malfoy");
+        Assertions.assertArrayEquals(personajesEsperados, actual);
     }
 
     @Test
@@ -87,19 +99,29 @@ public class PersonajeTest {
         // TODO Crea una función que reciba un string y devuelva una lista con todos los personajes que su actor se llama
         //  exactamente como el string recibido
         // TODO comprueba que tu función devuelve el número correcto de elementos
-        int expected = 4;
-        int actual = ej.personajesNombreConStringExacto("malfoy").length;
-        Assertions.assertEquals(expected, actual);
+        int expected = 1;
+        int actual = ej.personajesNombreConStringExacto("Sirius Black").length;
+        Assertions.assertEquals(expected,actual);
     }
 
+    @Test
+    public void test7Extra2() { //he controlado mayúsculas/minúsculas
+        // TODO Crea una función que reciba un string y devuelva una lista con todos los personajes que su actor se llama
+        //  exactamente como el string recibido
+        // TODO comprueba que tu función devuelve el número correcto de elementos
+        int expected = 1;
+        int actual = ej.personajesNombreConStringExacto("Albus Dumbledore").length;
+        Assertions.assertEquals(expected,actual);
+    }
 
-    /*
     @Test
     public void test8(){
         // TODO Realiza todos los test que consideres para probar la función buscar por nombre. Esa función buscará a todos los
         //  personajes cuyos nombres contengan el string introducido. Si buscas Voldermort tendras problemas.
-        int expected = 1;
-        int actual= ej.personajesNombreConSubStringYEstanVivos("Lord Voldemort").length;
-        Assertions.assertEquals(expected,actual);
-    }*/
+        Personaje [] personajesEsperados = {
+                new Personaje ("Lord Voldemort",true,false,false,"Ralph Fiennes",false,"image=http://hp-api.herokuapp.com/images/voldemort.jpg"),
+        };
+        Personaje actual []= ej.personajes.buscarPorNombre ("Lord Voldemort");
+        Assertions.assertEquals(personajesEsperados,actual);
+    }
 }
