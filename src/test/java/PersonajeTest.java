@@ -33,7 +33,7 @@ public class PersonajeTest {
     public void test3() {
         // TODO Crea una función que cuente a todos los personajes que forman parte del staff de Howarts y que están vivos
         // TODO comprueba que tu función devuelve el número correcto de elementos
-        int expected = 16;
+        int expected = 17;
         int actual = ej.staffHowartsYEstanVivos().length;
         Assertions.assertEquals(expected, actual);
     }
@@ -123,5 +123,7 @@ public class PersonajeTest {
         };
         Personaje actual []= ej.personajes.buscarPorNombre ("Lord Voldemort");
         Assertions.assertEquals(personajesEsperados,actual);
+        //El resultado es la excepcion NoPuedesBuscarAlQueNoPuedesNombrar, pero no tengo tiempo para añadirla.
+        //Assertions.assertThrows(Exception.class., () -> ObtenerPokemonsRequest.Companion.get((int) pokemon1.getWeight()
     }
 }
